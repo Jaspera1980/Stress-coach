@@ -58,7 +58,7 @@ class MiBand3(Peripheral):
     _send_rnd_cmd = struct.pack('<2s', b'\x02\x08')
     _send_enc_key = struct.pack('<2s', b'\x03\x08')
     
-    mac_address = "F0:44:40:28:C6:94"
+    #mac_address = "F0:44:40:28:C6:94"
 
     def __init__(self, mac_address, timeout=0.5, debug=False):
         FORMAT = '%(asctime)-15s %(name)s (%(levelname)s) > %(message)s'

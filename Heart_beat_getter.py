@@ -12,11 +12,9 @@ band.setSecurityLevel(level = "medium")
 
 #If the band is already initialized authentification is enough
 band.authenticate()
-   
-#print(heart_beat())
-#print("heart rate :", band.get_heart_rate_one_time())
-#print("Merry Christmas!!!") 
 
+#Function to measure heart rate
+#Tries to measure heart rate 3x times
 def heart_rate():
     BPM = band.get_heart_rate_one_time()
     for count in range(4):
@@ -30,8 +28,3 @@ def heart_rate():
             print("BPM is %s" %BPM)
             break
     return BPM
-    
-        
-
-x = heart_rate()
-print(x)
