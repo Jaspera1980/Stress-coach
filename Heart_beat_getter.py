@@ -20,11 +20,11 @@ def heart_rate():
     for count in range(4):
         if BPM == 0:
             if count < 3:
-                print("BPM not measured, BPM will be measured again")
+                print("Hartslag niet gemeten, we proberen het nog een keer")
                 BPM = band.get_heart_rate_one_time()                
             else:
-                print("BPM not measured")
+                print("Hartslag niet gemeten")
         else:
-            print("BPM is %s" %BPM)
+            print("Hartslag is %s" %BPM)
             break
     return BPM

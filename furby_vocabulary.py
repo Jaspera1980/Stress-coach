@@ -7,13 +7,13 @@ import Heart_beat_getter
 #Input 
 def vocabulary(data):
     try:
-        if "how are you" in data:
-            furby.speak("I am fine")
-            print("I am fine")
+        if "gaat het" in data:
+            furby.speak("Het gaat goed met Furby")
+            #print("I am fine")
             
-        if "heart rate" in data:
+        if "hartslag" in data:
             bpm = Heart_beat_getter.heart_rate()
-            furby.speak("Your heart rate is %s" %bpm)
+            furby.speak("Je hartslag is %s slagen per minuut" %bpm)
     
 # 
 #         if "what time is it" in data():
@@ -36,6 +36,5 @@ def run_furby():
     while 1:
         vocabulary(furby.speech_to_text())
         
-run_furby()
 
 

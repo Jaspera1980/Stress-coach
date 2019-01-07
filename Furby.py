@@ -41,14 +41,14 @@ class furby():
     #Function to record speech
     def recordAudio(): #device_index=furby.INPUT_DEVICE, chunk_size=furby.CHUNK_SIZE, sample_rate=furby.RATE
         with sr.Microphone() as source:
-            print("Say something!")
+            print("Zegt u het maar!")
             audio = furby.r.listen(source)
         return audio
     
     #Function to ouput speech
     def speak(audioString):
         print(audioString)
-        tts = gTTS(text=audioString, lang='en')
+        tts = gTTS(text=audioString, lang='nl')
         tts.save("audio.mp3")
         #works only for linux
         os.system("mpg321 audio.mp3")
@@ -59,8 +59,8 @@ class furby():
         try:
             # Uses the default API key
             # To use another API key: `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
-            _data = furby.r.recognize_google(furby.recordAudio())
-            print("You said: " + _data)
+            _data = furby.r.recognize_google(furby.recordAudio(), language='nl-NL')
+            print("U zei: " + _data)
         except sr.UnknownValueError:
             print("Google Speech Recognition could not understand audio")
         except sr.RequestError as e:
