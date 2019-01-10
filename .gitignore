@@ -1,3 +1,4 @@
 constants.pyc
 auth.pyc
 .gitattributes
+.gitignore
