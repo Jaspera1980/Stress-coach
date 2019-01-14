@@ -78,8 +78,8 @@ def scenario1():
             #play exercise file
             furby.speak(scen1_dict[13])
             sleep(5)
-            #os.system("mpg321 /home/pi/Downloads/Test/3min-ademruimte.mp3")
-            print("mpg321 3min-ademruimte.mp3")
+            os.system("mpg321 /home/pi/Downloads/Test/Audio_files/3min-ademruimte.mp3")
+            #print("mpg321 3min-ademruimte.mp3")
             #ask feedback on the exercise
             _feedback = feedback()
             #log answer + heart rate in database
@@ -96,7 +96,7 @@ def scenario1():
                     furby.speak(scen1_dict[10])
                     sleep(5)
                     print('yoga oefening wordt afgespeeld') 
-                    #os.system("mpg321 /home/pi/Downloads/Test/suggestieve_ontspanningsoefening.mp3")
+                    os.system("mpg321 /home/pi/Downloads/Test/Audio_files/suggestieve_ontspanningsoefening.mp3")
                     #ask feedback on the exercise
                     _feedback = feedback()
                     #log answer + heart rate in database

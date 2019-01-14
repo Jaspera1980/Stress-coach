@@ -1,11 +1,9 @@
-
-# coding: utf-8
-
 #libraries
 import pyaudio
 import speech_recognition as sr
 from gtts import gTTS
 import os
+import Furby_movements
 
 #Get an overview of available input devices
 def list_input_devices():
@@ -51,7 +49,10 @@ class furby():
         tts = gTTS(text=audioString, lang='nl')
         tts.save("audio.mp3")
         #works only for linux
+        Furby_movements.main()
+        Furby_movements.start_furby()
         os.system("mpg321 audio.mp3")
+        Furby_movements.stop_furby()
 
     #Function to convert speech to text
     def speech_to_text():
@@ -60,6 +61,7 @@ class furby():
             # Uses the default API key
             # To use another API key: `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
             _data = furby.r.recognize_google(furby.recordAudio(), language='nl-NL')
+            _data = _data.lower()
             print("U zei: " + _data)
         except sr.UnknownValueError:
             print("Google Speech Recognition could not understand audio")
