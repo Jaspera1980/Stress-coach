@@ -4,25 +4,8 @@ from time import sleep
 import Heart_beat_getter as bpm
 import numpy as np
 import os
-
-#Variables
-bpm_threshold = 70
-
-#Function to determine is scenario should be run or not
-def run_scenario():
-    #set initial heart rate to zero
-    heart_rate = 0
-    while heart_rate < bpm_threshold:
-        #in real implementation change sleep interval to:
-        #Randomly measure heart rate between 30 and 60 min
-        #sleep(np.random.randint((60*30), (60*60)))
-        print("sleep 5 seconds")
-        sleep(5)
-        #Measure heart rate
-        heart_rate = bpm.heart_rate()
-        #implement function here that writes measured heart rate to a database
-        print(heart_rate)
-    print('Scenario %s selected' %np.random.randint(3))
+from random import choice
+import furby_vocabulary
 
 #Scenario 1 script
 scen1_dict = {0: "Hoi! Voel je je misschien een beetje opgejaagd?",
@@ -78,7 +61,7 @@ def scenario1():
             #play exercise file
             furby.speak(scen1_dict[13])
             sleep(5)
-            os.system("mpg321 /home/pi/Downloads/Test/Audio_files/3min-ademruimte.mp3")
+            #os.system("mpg321 /home/pi/Downloads/Test/Audio_files/3min-ademruimte.mp3")
             #print("mpg321 3min-ademruimte.mp3")
             #ask feedback on the exercise
             _feedback = feedback()
@@ -96,7 +79,7 @@ def scenario1():
                     furby.speak(scen1_dict[10])
                     sleep(5)
                     print('yoga oefening wordt afgespeeld') 
-                    os.system("mpg321 /home/pi/Downloads/Test/Audio_files/suggestieve_ontspanningsoefening.mp3")
+                    #os.system("mpg321 /home/pi/Downloads/Test/Audio_files/suggestieve_ontspanningsoefening.mp3")
                     #ask feedback on the exercise
                     _feedback = feedback()
                     #log answer + heart rate in database
@@ -111,5 +94,43 @@ def scenario1():
     if answer is 'nee':
         furby.speak(scen1_dict[2])
 
-scenario1()
 
+#Variables
+bpm_threshold = 60
+
+#Scenarios where randomly can be choosen from
+intervention = [scenario1]
+
+#Function to determine is scenario should be run or not
+def run_intervention():
+    #set initial heart rate to zero
+    heart_rate = bpm.heart_rate()
+    if heart_rate > bpm_threshold:
+        choice(intervention)()
+    else:
+        print('hartslag is %s, een intervention is niet nodig' %heart_rate)
+
+#Set timeout duration
+min_duration = 10 #seconds
+max_duration = 20 #seconds
+
+def main():
+    timeout = np.random.randint(min_duration, max_duration)
+    timeout_start = time.time()
+    while 1:
+        #After a set time the heart rate will measured and a random intervention will be suggested
+        #if the user is stressed (has an increased heart rate)
+        if time.time() > timeout_start + timeout:
+            #Run function here
+            run_intervention()
+            #Reset timer
+            timeout = np.random.randint(min_duration, max_duration)
+            timeout_start = time.time()
+            continue
+        else:
+            time.sleep(1)
+            text = furby.speech_to_text()
+            furby_vocabulary.vocabulary(text)
+            continue
+
+main()
