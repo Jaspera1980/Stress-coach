@@ -1,6 +1,7 @@
 from Furby import furby
 import time
 import Heart_beat_getter
+import scenarios
 #import os
 
 
@@ -9,6 +10,12 @@ def vocabulary(data):
     try:
         if "furby" in data:
             furby.speak("Hey wat kan ik voor je doen?")
+            answer = furby.speech_to_text()
+            if 'stress' in answer:
+                scenarios.scenario2()
+            if 'oefening'in answer:
+                scenarios.scenario2()
+            
             #print("I am fine")
     
 # 

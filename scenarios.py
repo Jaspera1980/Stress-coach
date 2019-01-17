@@ -170,5 +170,3 @@ def scenario2():
             scen2_module_1()
     if answer is 'nee':
         scen2_module_2()
-        
-scenario2()
