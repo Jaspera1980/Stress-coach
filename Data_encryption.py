@@ -1,17 +1,28 @@
 
+# coding: utf-8
+
+# In[2]:
+
+
 from Crypto.Cipher import AES
 from Crypto import Random
 import os
 import json
 
-class encryption(object):
 
+# ### Encryption and decription function
+
+# In[3]:
+
+
+class encryption(object):
+    
     #set variables
     def __init__(self, key):
         self.key = key
         #Preset the AES
         self.aes_mode = AES.MODE_CBC
-
+        
 
     #Check security level
     def security_level(self):
@@ -59,13 +70,19 @@ class encryption(object):
         print("Decrypted data: \n%s" %ciphertext)
         return ciphertext
 
-class secure_key(object):
 
+# ### Encryption key
+
+# In[4]:
+
+
+class secure_key(object):
+    
     def __init__(self):
         self.key = "_OAjvI8J$skNGu/7F9PVJ7vuIgghwn$v"
         self.aes_mode = AES.MODE_CBC
-
-
+    
+    
     #Function to enccrypt key and store it as json
     def encrypt_key(self, key, filename):
         #Generate random public key
@@ -79,7 +96,7 @@ class secure_key(object):
             fp.write(encrypted_key)
             fp.close()
         print("Key encrypted and stored as %s" %filename)
-
+        
     def decrypt_key(self, filename):
         #Open read json file
         with open(filename, 'rb') as fp:
@@ -93,3 +110,4 @@ class secure_key(object):
             _key = obj.decrypt(key)
             fp.close()
             return _key
+

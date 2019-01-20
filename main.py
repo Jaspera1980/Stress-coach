@@ -6,13 +6,13 @@ import numpy as np
 import os
 from random import choice
 import furby_vocabulary
-import scenario1
+import scenarios
 
 #Heart rate threshold, the actual threshold will be determined in the onboarding
 bpm_threshold = 60
 
 #Scenarios where randomly can be choosen from
-intervention = [scenario1.scenario1]
+intervention = [scenarios.scenario1]
 
 #Function to determine is scenario should be run or not
 def run_intervention():
