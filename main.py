@@ -9,23 +9,24 @@ import furby_vocabulary
 import scenarios
 
 #Heart rate threshold, the actual threshold will be determined in the onboarding
-bpm_threshold = 60
+bpm_threshold = 50
 
 #Scenarios where randomly can be choosen from
-intervention = [scenarios.scenario1]
+intervention = [scenarios.activate_scenario_1]
 
 #Function to determine is scenario should be run or not
 def run_intervention():
     #set initial heart rate to zero
     heart_rate = bpm.heart_rate()
     if heart_rate > bpm_threshold:
+        furby.speak("Hoi! Ik heb je hartslag gemeten, deze is een beetje verhoogd.")
         choice(intervention)()
     else:
         print('hartslag is %s, een intervention is niet nodig' %heart_rate)
 
 #Set timeout duration
-min_duration = 10 #seconds
-max_duration = 20 #seconds
+min_duration = 30 #seconds
+max_duration = 60 #seconds
 
 def main():
     timeout = np.random.randint(min_duration, max_duration)
@@ -34,6 +35,7 @@ def main():
         #After a set time the heart rate will measured and a random intervention will be suggested
         #if the user is stressed (has an increased heart rate)
         if time.time() > timeout_start + timeout:
+            #Check if user is stressed
             #Run function here
             run_intervention()
             #Reset timer
@@ -45,8 +47,5 @@ def main():
             text = furby.speech_to_text()
             furby_vocabulary.vocabulary(text)
             continue
-        
+
 main()
-
-
-

@@ -108,3 +108,19 @@ def get_inv_text(intervention_id):
     text = search['intervention_text']
     scen_dict = eval(text)
     return scen_dict
+
+def new_entry_user_info(data):
+    user_info.insert_one(data)
+    
+def new_entry_interv_stats_data(data):
+    interv_stats.insert_one(data)
+
+#pymongo.MIN_SUPPORTED_WIRE_VERSION = 0
+#x = pymongo.MIN_SUPPORTED_WIRE_VERSION
+#print(x)
+
+#data = user_info_data(user_id=1, age=38, gender=0) #, sports=0, heart_rate_at_rest=60)
+#data_ = interv_stats_data(12354)
+#new_entry_interv_stats_data(data_)
+print(user_info)
+

@@ -2,23 +2,25 @@ from Furby import furby
 import time
 import Heart_beat_getter
 import scenarios
-#import os
+from datetime import datetime
 
-
-#Input 
+#Input
 def vocabulary(data):
     try:
         if "furby" in data:
-            furby.speak("Hey wat kan ik voor je doen?")
+            furby.speak("Wat kan ik voor je doen?")
             answer = furby.speech_to_text()
-            if 'stress' in answer:
-                scenarios.scenario2()
-            if 'oefening'in answer:
-                scenarios.scenario2()
-            
+            if ('stress' in answer) or ('gestrest' in answer)or ('oefening'in answer):
+                scenarios.activate_scenario_1()
+            if ("laat" in answer) or ("tijd" in answer):
+                furby.speak("het is %s uur en %s minuten" %(datetime.now().strftime("%H"), datetime.now().strftime("%M")))
+            if ("regen" in answer) or ("regent" in answer):
+                furby.speak("het regent niet op dit moment")
+            if "weer" in answer:
+                furby.speak("het is bewolkt met hier en daar kans op een bui")
             #print("I am fine")
-    
-# 
+
+#
 #         if "what time is it" in data():
 #             furby.speak(ctime())
 
@@ -29,10 +31,3 @@ def vocabulary(data):
 #             os.system("chromium-browser https://www.google.nl/maps/place/" + location + "/&amp;")
     except:
         pass
-
-
-# In[15]:
-
-        
-
-
