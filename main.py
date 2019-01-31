@@ -25,8 +25,8 @@ def run_intervention():
         print('hartslag is %s, een intervention is niet nodig' %heart_rate)
 
 #Set timeout duration
-min_duration = 30 #seconds
-max_duration = 60 #seconds
+min_duration = 900 #seconds
+max_duration = 3600 #seconds
 
 def main():
     timeout = np.random.randint(min_duration, max_duration)
@@ -47,5 +47,3 @@ def main():
             text = furby.speech_to_text()
             furby_vocabulary.vocabulary(text)
             continue
-
-main()

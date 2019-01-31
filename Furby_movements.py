@@ -32,16 +32,5 @@ def main():
     GPIO.setup(12, GPIO.OUT) # Connected to AIN1
     GPIO.setup(13, GPIO.OUT) # Connected to STBY
 
-#    start_furby()
-#    sleep(10)
-#    stop_furby()
-    # Open file and check contents
-#    with open(soundcard_status_file, 'r') as fh:
-#        value = fh.read()
-#        if value == 'RUNNING':
-#            start_furby()
-#        else:
-#            stop_furby()
-
 if __name__ == '__main__':
     main()
